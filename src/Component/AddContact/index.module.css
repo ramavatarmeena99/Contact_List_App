@@ -1,0 +1,20 @@
+.inputFiled {
+  width: 30%;
+  height: 40px;
+  margin-top: 10px;
+  border: 2px solid lightgray;
+  outline: none;
+  padding: 10px;
+  font-size: 14px;
+}
+.addButton {
+  width: 10%;
+  height: 40px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  background-color: #121212;
+}
