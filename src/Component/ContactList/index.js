@@ -28,26 +28,8 @@ export default function ContactList() {
         justifyContent: "center",
       }}
     >
-      <div
-        style={{
-          width: "70%",
-          height: "auto",
-
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+      <div className={Style.new}>
+        <div className={Style.mainDivForDetails}>
           <div className={Style.contactDetails}>
             <div className={Style.details}>
               <h1 className={Style.userDetails}> Name</h1>

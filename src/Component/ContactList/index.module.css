@@ -62,3 +62,51 @@
   font-size: 17px;
   color: white;
 }
+.new {
+  width: 70%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.mainDivForDetails {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  .contactDetails {
+    width: 100%;
+  }
+  .contactMap {
+    width: 100%;
+  }
+  .new {
+    width: 95%;
+  }
+  .userDetails {
+    font-size: 12px;
+  }
+  .details {
+    padding-left: 5px;
+  }
+  .srNumber {
+    padding-left: 15px;
+    font-size: 14px;
+  }
+  .dltButton {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .editButton {
+    font-size: 10px;
+    padding: 8px;
+  }
+  .mainDivForDetails {
+    width: 100%;
+  }
+}

@@ -92,29 +92,8 @@ export default function AddContact() {
     // </>
     <>
       {show ? (
-        <div
-          style={{
-            width: "100%",
-            height: "20vh",
-
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          <button
-            style={{
-              width: "10%",
-              height: "40px",
-              fontSize: "15px",
-              marginRight: "20px",
-              cursor: "pointer",
-              borderRadius: "5px",
-              border: "1px solid black",
-              fontWeight: "600",
-            }}
-            onClick={add}
-          >
+        <div className={Style.addContactForNew}>
+          <button className={Style.addContactBtn} onClick={add}>
             Add Contact
           </button>
         </div>
