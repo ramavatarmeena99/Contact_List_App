@@ -25,7 +25,7 @@ export default function AddContact() {
   const enterName = (e) => {
     setName(e.target.value);
   };
-  const mobileNumber = (e) => {
+  const mobileNumberHanlder = (e) => {
     setNumber(e.target.value);
   };
   const emailId = (e) => {
@@ -96,15 +96,15 @@ export default function AddContact() {
     data[index].email = email;
     data[index].name = name;
 
+    if (dataForEdit.number.length < 10 || dataForEdit.number.length >= 11) {
+      alert("Please Enter 10 Digit Number");
+      setShow(false);
+      return;
+    }
     if (isAlreadyExistContactNumber.length > 0) {
       alert("Alreday Exists!");
       setShow(false);
 
-      return;
-    }
-    if (dataForEdit.number.length < 10) {
-      alert("Please Enter 10Digit Number");
-      setShow(false);
       return;
     }
     dispatch(contactDataAction(data));
@@ -150,14 +150,14 @@ export default function AddContact() {
             className={Style.inputFiled}
             type="text"
             placeholder="Enter Your Name"
-          ></input>
+          />
           <input
-            onChange={mobileNumber}
+            onChange={mobileNumberHanlder}
             value={number}
             className={Style.inputFiled}
             type="number"
             placeholder="Enter 10 Digit Mobile Number"
-          ></input>
+          />
           <input
             onChange={emailId}
             value={email}
