@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { contactDataAction, editDataAction } from "../../Redux/action";
 import Style from "./index.module.css";
+import validator from "validator";
+
 export default function AddContact() {
   const { data, dataForEdit } = useSelector((state) => state.countactReducer);
 
@@ -9,7 +11,12 @@ export default function AddContact() {
   const [number, setNumber] = useState();
   const [email, setEmail] = useState();
   const [alertMessege, setAlertMessege] = useState(null);
+  const [alertMessegeForEmail, setAlertMessegeForEmail] = useState(null);
+  const [alertMessegeForMobileNumber, setAlertMessegeForMobileNumber] =
+    useState(null);
+
   const [show, setShow] = useState(true);
+  const [emailError, setEmailError] = useState("");
 
   const add = () => {
     setShow(false);
@@ -39,11 +46,33 @@ export default function AddContact() {
         clearTimeout(setAlertMessege);
       };
     }
+
     if (isAlreadyExistContactNumber.length > 0) {
       alert("Alreday Exists!");
       return;
     }
-
+    if (validator.isEmail(email)) {
+      setEmailError(setAlertMessegeForEmail(false));
+    } else {
+      setEmailError(setAlertMessegeForEmail(true));
+      setAlertMessegeForEmail(true);
+      setTimeout(() => {
+        setAlertMessegeForEmail(false);
+      }, 2000);
+      return () => {
+        clearTimeout(setAlertMessegeForEmail);
+      };
+    }
+    if (number.length >= 11 || number.length < 10) {
+      setNumber(setAlertMessegeForMobileNumber(false));
+      setAlertMessegeForMobileNumber(true);
+      setTimeout(() => {
+        setAlertMessegeForMobileNumber(false);
+      }, 2000);
+      return () => {
+        clearTimeout(setAlertMessegeForMobileNumber);
+      };
+    }
     const addNewData = {
       name,
       email,
@@ -62,15 +91,22 @@ export default function AddContact() {
         parseInt(i.number || i.name || i.email) ===
         parseInt(dataForEdit.number || dataForEdit.name || dataForEdit.email)
     );
+
     data[index].number = number;
     data[index].email = email;
     data[index].name = name;
 
     if (isAlreadyExistContactNumber.length > 0) {
       alert("Alreday Exists!");
+      setShow(false);
+
       return;
     }
-
+    if (dataForEdit.number.length < 10) {
+      alert("Please Enter 10Digit Number");
+      setShow(false);
+      return;
+    }
     dispatch(contactDataAction(data));
     dispatch(editDataAction({}));
 
@@ -120,7 +156,7 @@ export default function AddContact() {
             value={number}
             className={Style.inputFiled}
             type="number"
-            placeholder="Enter Mobile Number"
+            placeholder="Enter 10 Digit Mobile Number"
           ></input>
           <input
             onChange={emailId}
@@ -129,8 +165,22 @@ export default function AddContact() {
             type="email"
             placeholder="Enter E-Mail "
           ></input>
+          <span
+            style={{
+              fontWeight: "bold",
+              color: "red",
+            }}
+          >
+            {emailError}
+          </span>
           <div className={Style.alert}>
             {alertMessege ? <h3>*Please Fill In All Fields*</h3> : null}
+            {alertMessegeForEmail ? (
+              <h3>*Please Enter Valid EMail Id*</h3>
+            ) : null}
+            {alertMessegeForMobileNumber ? (
+              <h3>*Please Enter 10 Digit Mobile Number*</h3>
+            ) : null}
           </div>
           <button
             onClick={dataForEdit.number ? editContact : addContact}
