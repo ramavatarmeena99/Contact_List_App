@@ -26,6 +26,9 @@ export default function AddContact() {
     setName(e.target.value);
   };
   const mobileNumberHanlder = (e) => {
+    if (e.target.value.length > 10) {
+      return;
+    }
     setNumber(e.target.value);
   };
   const emailId = (e) => {
@@ -73,10 +76,12 @@ export default function AddContact() {
         clearTimeout(setAlertMessegeForMobileNumber);
       };
     }
+
     const addNewData = {
       name,
       email,
       number,
+      isEdit: false,
     };
     dispatch(contactDataAction([...data, addNewData]));
     setEmail("");
@@ -84,8 +89,10 @@ export default function AddContact() {
     setNumber("");
     setShow(true);
   };
+
   const editContact = () => {
     setShow(true);
+
     const index = data.findIndex(
       (i) =>
         parseInt(i.number || i.name || i.email) ===
@@ -95,18 +102,32 @@ export default function AddContact() {
     data[index].number = number;
     data[index].email = email;
     data[index].name = name;
+    data[index].isEdit = true;
+
+    // const isAlreadyExistContactNumber = data.filter(
+    //   (item) => item.number == data[index].number
+    // );
+
+    // // const isOwnContact = dataForEdit.number == number;
+
+    // if (isAlreadyExistContactNumber.length > 0) {
+    //   alert("Alreday Exists!");
+    //   setShow(false);
+    //   return;
+    // }
 
     if (dataForEdit.number.length < 10 || dataForEdit.number.length >= 11) {
       alert("Please Enter 10 Digit Number");
       setShow(false);
       return;
     }
-    if (isAlreadyExistContactNumber.length > 0) {
-      alert("Alreday Exists!");
-      setShow(false);
 
-      return;
-    }
+    // if (isAlreadyExistContactNumber === !isAlreadyExistContactNumber) {
+    //   alert("Alreday Exists!");
+    //   setShow(false);
+
+    //   return;
+    // }
     dispatch(contactDataAction(data));
     dispatch(editDataAction({}));
 

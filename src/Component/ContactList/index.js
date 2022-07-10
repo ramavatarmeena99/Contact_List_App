@@ -4,7 +4,8 @@ import Style from "./index.module.css";
 import { contactDataAction, editDataAction } from "../../Redux/action";
 
 export default function ContactList() {
-  const { data } = useSelector((state) => state.countactReducer);
+  const { data, dataForEdit } = useSelector((state) => state.countactReducer);
+
   const dispatch = useDispatch();
   const deleteButton = (item) => {
     const remainingData = data.filter(
@@ -16,12 +17,12 @@ export default function ContactList() {
     dispatch(editDataAction(item));
   };
 
+  const isEditOpen = dataForEdit?.number;
   return (
     <div
       style={{
         width: "100%",
         height: "auto",
-
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -69,6 +70,7 @@ export default function ContactList() {
                 </div>
                 <div className={Style.srNumber}>
                   <button
+                    disabled={isEditOpen}
                     onClick={() => deleteButton(item)}
                     className={Style.dltButton}
                   >
