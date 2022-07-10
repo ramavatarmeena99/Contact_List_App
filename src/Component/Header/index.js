@@ -13,7 +13,7 @@ export default function Header() {
         color: "white",
       }}
     >
-      <h1>Contact List</h1>
+      <h1> React Telephonic Library</h1>
     </div>
   );
 }
