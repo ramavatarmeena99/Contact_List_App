@@ -1,14 +1,14 @@
 const initialState = {
   data: [
     {
-      name: "Shravan meena",
+      name: " Testing1",
       number: 9660801827,
       email: "shravanmeena47@gmail.com",
     },
     {
-      name: "Poonma meena",
+      name: "Testing2",
       number: 9660801826,
-      email: "Poonam733@gmail.com",
+      email: "shravanmeena733@gmail.com",
     },
   ],
 
