@@ -7,7 +7,7 @@ const initialState = {
     },
     {
       name: "Testing2",
-      number: 9660801826,
+      number: 8824316660,
       email: "shravanmeena733@gmail.com",
     },
   ],
