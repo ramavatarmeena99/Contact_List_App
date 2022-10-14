@@ -122,9 +122,9 @@ export default function AddContact() {
       return;
     }
 
-    // if (isAlreadyExistContactNumber === !isAlreadyExistContactNumber) {
+    // if (isAlreadyExistContactNumber !== isAlreadyExistContactNumber) {
     //   alert("Alreday Exists!");
-    //   setShow(false);
+    //   // setShow(false);
 
     //   return;
     // }
