@@ -31,7 +31,7 @@ To-do application for keeping to-do records of past, present and future.
     ```
 2. Change the directory 
     ```
-    cd notes-taking-app
+    cd contact_list_app
     ```
 3. Install
     ```
